@@ -1,7 +1,7 @@
 # Configure the provider software version
 terraform {
   backend "s3" {
-    bucket = "" #set your bucket name
+    bucket = "zariaa" #set your bucket name
     key    = "terraform.tfstate"
     region = "us-east-1"
     encrypt = true

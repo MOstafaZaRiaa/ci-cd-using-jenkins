@@ -9,7 +9,7 @@
 
   - name: install java 
     apt: 
-      name: openjdk-11-jre
+      name: openjdk-17-jre
       state: present
 
   - name: download maven packages 
@@ -22,3 +22,22 @@
       src: /opt/apache-maven-3.9.4-bin.tar.gz
       dest: /opt 
       remote_src: yes
+  - name: install docker
+    apt:
+      name: docker.io
+      state: present 
+
+  - name: start docker services
+    service:
+      name: docker
+      state: started
+
+  - name: give 777 permissions on /var/run/docker.sock
+    file:
+      path: /var/run/docker.sock
+      state: file
+      mode: 0777
+  - name: start docker on boot time 
+    service:
+      name: docker
+      enabled: yes
